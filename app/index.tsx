@@ -3,6 +3,7 @@ import { useFonts } from "expo-font";
 import React from "react";
 import AntDesign from "@expo/vector-icons/AntDesign";
 import { ScrollView, Text, View } from "react-native";
+import { Link } from "expo-router";
 const mythings = [{ name: "kunci" }, { name: "ball" }];
 const index = () => {
   const [loaded] = useFonts({
@@ -12,7 +13,7 @@ const index = () => {
     <View>
       <ScrollView>
         <View style={{ padding: 8, gap: 8 }}>
-          {mythings.map((thing) => (
+          {mythings.map((thing, idx) => (
             <View
               style={{
                 backgroundColor: "#dfc59f",
@@ -28,6 +29,7 @@ const index = () => {
 
                 elevation: 4,
               }}
+              key={idx}
             >
               <Text>{thing.name}</Text>
             </View>
@@ -35,15 +37,21 @@ const index = () => {
         </View>
       </ScrollView>
 
-      <IconButton
+      <Link
+        href="/add-record"
         style={{
-          borderRadius: 8,
-          backgroundColor: "#966231",
-          padding: 4,
           alignSelf: "center",
         }}
-        icon={<AntDesign name="plus" size={24} color="black" />}
-      />
+      >
+        <IconButton
+          style={{
+            borderRadius: 8,
+            backgroundColor: "#966231",
+            padding: 8,
+          }}
+          icon={<AntDesign name="plus" size={24} color="white" />}
+        />
+      </Link>
     </View>
   );
 };
