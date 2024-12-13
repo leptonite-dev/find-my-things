@@ -29,10 +29,7 @@
     "plugins": [
       "expo-router",
       "expo-font",
-      "expo-camera",
-      {
-        
-      }
+      "expo-camera"
     ],
     "experiments": {
       "typedRoutes": true
