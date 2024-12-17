@@ -29,7 +29,8 @@
     "plugins": [
       "expo-router",
       "expo-font",
-      "expo-camera"
+      "expo-camera",
+      "expo-sqlite"
     ],
     "experiments": {
       "typedRoutes": true

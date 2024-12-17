@@ -2,15 +2,25 @@ import React, { useEffect, useRef, useState } from "react";
 import { Pressable, Text, View } from "react-native";
 import Feather from "@expo/vector-icons/Feather";
 import { CameraType, CameraView, useCameraPermissions } from "expo-camera";
+import * as SQLite from 'expo-sqlite'
+
+
 
 const AddRecordScreen = () => {
   const [facing, setFacing] = useState<CameraType>("front");
   const [permission, requestPermission] = useCameraPermissions();
   const camera = useRef(null);
-  useEffect(() => {
+  useEffect(() => { 
+    const initdb = async() => { 
+    const db = await SQLite.openDatabaseAsync('records');
+    await db.execAsync(`
+      CREATE TABLE IF NOT EXISTS test (id INTEGER PRIMARY KEY NOT NULL, location TEXT NOT NULL, name TEXT NOT NULL);
+      INSERT INTO test (location, name) VALUES ('test1', '123');
+      `)
+  }
     requestPermission();
   }, []);
-
+  
   return (
     <View style={{ padding: 8 }}>
       <View
@@ -62,3 +72,5 @@ const AddRecordScreen = () => {
 };
 
 export default AddRecordScreen;
+
+
